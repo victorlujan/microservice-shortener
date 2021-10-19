@@ -16,6 +16,7 @@ var(
 
 )
 
+
 type redirectService struct {
 	redirectRepo RedirectRepository
 }
