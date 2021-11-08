@@ -22,7 +22,8 @@ import (
 func main() {
 
 	err := godotenv.Load()
-	if err != nil {
+	_, localEnvSetted := os.LookupEnv("MONGO_URL")
+	if err != nil && localEnvSetted == false {
 		log.Fatal("Error loading .env file")
 	}
 
