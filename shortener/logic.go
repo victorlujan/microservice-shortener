@@ -19,7 +19,7 @@ type redirectService struct {
 }
 
 func NewRedirectService(redirectRepo RedirectRepository) RedirectService {
-	return &redirectService{redirectRepo,}
+	return &redirectService{redirectRepo}
 }
 
 func (r *redirectService) Find(code string) (*Redirect, error) {
