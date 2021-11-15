@@ -25,7 +25,17 @@ func TestStoreAndFind(t *testing.T)  {
 }
 
 func TestInvalid(t *testing.T)  {
+	repo := NewMockRepository()
+	service := NewRedirectService(repo)
 
-	//assert.Error.Is(t, err, ErrRedirectInvalid)
-	//assert.Error.Is(t, err, ErrRedirectNotFound)
+	redirect := Redirect{
+		URL: "google.com",
+	}
+
+	err := service.Store(&redirect)
+	assert.ErrorIs(t, err, ErrRedirectInvalid)
+	_, err = service.Find(redirect.Code)
+	assert.ErrorIs(t, err, ErrRedirectNotFound)
+	
+	
 }
