@@ -6,7 +6,8 @@ go 1.17
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/go-chi/chi v1.5.4 // indirect
-	github.com/go-chi/chi/v5 v5.0.4 // indirect
+	//github.com/go-chi/chi/v5 v5.0.4 // indirect
+	github.com/go-chi/cors v1.2.0 // indirect
 	github.com/go-stack/stack v1.8.0 // indirect
 	github.com/golang/snappy v0.0.1 // indirect
 	github.com/joho/godotenv v1.4.0 // indirect

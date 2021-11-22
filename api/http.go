@@ -6,9 +6,12 @@ import (
 	js "microservice-shortener/serializer/json"
 	"microservice-shortener/shortener"
 	"net/http"
+	//"fmt"
 
-	"github.com/go-chi/chi/v5"
+	//"github.com/go-chi/chi/v5"
 	"github.com/pkg/errors"
+	"github.com/go-chi/chi"
+
 )
 
 type RedirectHandler interface {
@@ -34,7 +37,10 @@ func (*handler) serializer(_ string) shortener.RedirectSerializer {
 	return &js.Redirect{}
 }
 func (h *handler) Get(w http.ResponseWriter, r *http.Request) {
-	code := chi.URLParam(r, "code")
+	code := chi.URLParam(r,"code")
+	//code2 := string(code)
+	//code := "dpWWWStng"
+
 	redirect, err := h.redirectService.Find(code)
 	if err != nil {
 		if errors.Cause(err) == shortener.ErrRedirectNotFound {
@@ -44,6 +50,7 @@ func (h *handler) Get(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
 		return
 	}
+
 	http.Redirect(w, r, redirect.URL, http.StatusMovedPermanently)
 }
 func (h *handler) Post(w http.ResponseWriter, r *http.Request) {
