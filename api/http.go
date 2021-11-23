@@ -6,12 +6,9 @@ import (
 	js "microservice-shortener/serializer/json"
 	"microservice-shortener/shortener"
 	"net/http"
-	//"fmt"
 
-	//"github.com/go-chi/chi/v5"
-	"github.com/pkg/errors"
 	"github.com/go-chi/chi"
-
+	"github.com/pkg/errors"
 )
 
 type RedirectHandler interface {
@@ -37,7 +34,7 @@ func (*handler) serializer(_ string) shortener.RedirectSerializer {
 	return &js.Redirect{}
 }
 func (h *handler) Get(w http.ResponseWriter, r *http.Request) {
-	code := chi.URLParam(r,"code")
+	code := chi.URLParam(r, "code")
 	//code2 := string(code)
 	//code := "dpWWWStng"
 
